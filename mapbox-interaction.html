@@ -46,21 +46,8 @@
 <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
   <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
-  <style>
-  .geocoder {
-    position: absolute;
-    z-index: 1;
-    width: 50%;
-    left: 50%;
-    margin-left: -25%;
-    top: 10px;
-  }
-  .mapboxgl-ctrl-geocoder {
-    min-width: 100%;
-  }
-  </style>
   <div id="map"></div>
-  <div id="geocoder" class="geocoder"></div>
+
   <script>
 
     // Initialize the map
