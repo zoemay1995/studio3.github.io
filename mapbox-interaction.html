@@ -40,15 +40,20 @@
   <script>
 
     // Initialize the map
-    mapboxgl.accessToken = '<your access token here>';
+    mapboxgl.accessToken = 'pk.eyJ1Ijoiem9lbWF5MTk5NSIsImEiOiJjazVnNmFnYnkwNHFnM2V0ZDkxNWJjYW9lIn0.Wl9AWpKWE1hGwQcNyOhuSw';
     var map = new mapboxgl.Map({
       container: 'map', // container id
-      style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+      style: 'mapbox://styles/zoemay1995/ck8s6l3310qt61insecykuq8q', // stylesheet location
       center: [-122.44, 37.76], // starting position [lng, lat]
       zoom: 11 // starting zoom
     });
 
     // Add a popup: https://docs.mapbox.com/mapbox-gl-js/example/popup/
+
+    var popup = new mapboxgl.Popup({ closeOnClick: false })
+      .setLngLat([-76.6122, 39.2904])
+      .setHTML('<h1>Best City in US!</h1>')
+      .addTo(map);
 
     // Add pan and zoom controls: https://docs.mapbox.com/mapbox-gl-js/api/#map#addcontrol
 
