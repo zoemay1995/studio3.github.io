@@ -35,19 +35,36 @@
     <li><a href="mapbox-turfjs.html" target="_self">Output 3</a></li>
   </ul>
   <br>
-  <div id="map"></div>
+
 
   <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
   <link
-  rel="stylesheet"
-  href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css"
-  type="text/css"
+    rel="stylesheet"
+    href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css"
+    type="text/css"
   />
-  <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
+<!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
   <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
-
-    <script>
+  <style>
+  .geocoder {
+    position: absolute;
+    z-index: 1;
+    width: 50%;
+    left: 50%;
+    margin-left: -25%;
+    top: 10px;
+  }
+  .mapboxgl-ctrl-geocoder {
+    min-width: 100%;
+  }
+  #map {
+    margin-top: 75px;
+  }
+  </style>
+  <div id="map"></div>
+  <div id="geocoder" class="geocoder"></div>
+  <script>
 
     // Initialize the map
     mapboxgl.accessToken = 'pk.eyJ1Ijoiem9lbWF5MTk5NSIsImEiOiJjazVnNmFnYnkwNHFnM2V0ZDkxNWJjYW9lIn0.Wl9AWpKWE1hGwQcNyOhuSw';
@@ -84,13 +101,12 @@
 
 
     // Add a search box: https://docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-geocoder/
-    map.addControl(
-      new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl
-      })
-    );
+    var geocoder = new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+      mapboxgl: mapboxgl
+    });
 
+    document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
     // Add a geolocation button: https://docs.mapbox.com/mapbox-gl-js/api/#geolocatecontrol
 
     </script>
