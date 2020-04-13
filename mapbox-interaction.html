@@ -47,7 +47,7 @@
       center: [-122.44, 37.76], // starting position [lng, lat]
       zoom: 11 // starting zoom
     });
-
+      map.on('load', function() {
     // Add a popup: https://docs.mapbox.com/mapbox-gl-js/example/popup/
 
     var popup = new mapboxgl.Popup({ closeOnClick: false })
@@ -65,6 +65,7 @@
 
     // Add a geolocation button: https://docs.mapbox.com/mapbox-gl-js/api/#geolocatecontrol
 
+    });
     </script>
 
 </body>
