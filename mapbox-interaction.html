@@ -84,11 +84,11 @@
 
     // Add a search box: https://docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-geocoder/
     map.addControl(
-      new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl
-      })
-    );
+             new MapboxGeocoder({
+               accessToken: mapboxgl.accessToken,
+               mapboxgl: mapboxgl
+             })
+     );
     // Add a geolocation button: https://docs.mapbox.com/mapbox-gl-js/api/#geolocatecontrol
 
     map.fitBounds([[-133.2421875, 16.972741], [-47.63671875, 52.696361]]);
