@@ -8,7 +8,7 @@
   <link href="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css" rel="stylesheet" />
   <!-- Adding Mapbox JavaScript file -->
   <script src="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js"></script>
-  <!-- Adding styling info for the map -->
+  <!-- Adding styling info for the map and button -->
   <style type="text/css">
     body {
       margin: 0;
@@ -20,12 +20,14 @@
       top: 200px;
       bottom: 0;
       width: 100%;
-    }  </style>
+    }
+
+  </style>
   <!-- Adding styling info for page layout by reading in a CSS file -->
   <link rel="stylesheet" href="styles.css">
+</head>
 
 <body>
-
   <h1>Studio Week 3<br> Interactions with Mapbox GL JS </h1>
   <!-- Add multiple pages to web page-->
   <!-- active class displays the grey box around current page-->
@@ -35,18 +37,21 @@
     <li><a href="mapbox-turfjs.html" target="_self">Output 3</a></li>
   </ul>
   <br>
-
-
-  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
-  <link
-    rel="stylesheet"
-    href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css"
-    type="text/css"
-  />
-<!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
-  <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+  <!-- add the map-->
   <div id="map"></div>
+  <!-- add the button-->
+<button id="fly">Fly</button>
+  <!-- geocoder information-->
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
+<link
+rel="stylesheet"
+href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css"
+type="text/css"
+/>
+<!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+
 
   <script>
 
@@ -55,49 +60,47 @@
     var map = new mapboxgl.Map({
       container: 'map', // container id
       style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
-      center: [-76.6122, 39.2904], // starting position [lng, lat]
-      zoom: 11 // starting zoom
+      center: [-98.4842, 39.0119], // starting position [lng, lat]
+      zoom: 6 // starting zoom
     });
 
-    // Add a popup: https://docs.mapbox.com/mapbox-gl-js/example/popup/
-
+    // Add a popup
     var popup = new mapboxgl.Popup({ closeOnClick: false })
-      .setLngLat([-76.6122, 39.2904])
-      .setHTML('<h1>Best City in US, hon!</h1>')
+      .setLngLat([-96, 37.8])
+      .setHTML('<h1>Abolish ICE!</h1>')
       .addTo(map);
+    // Add pan and zoom controls on the left
+    var nav = new mapboxgl.NavigationControl();
+    map.addControl(nav, 'top-left');
 
-    // Add pan and zoom controls: https://docs.mapbox.com/mapbox-gl-js/api/#map#addcontrol
-    map.addControl(new mapboxgl.NavigationControl());
+    //Add a function that flies to a location: https://docs.mapbox.com/mapbox-gl-js/api/#map#flyto
+    document.getElementById('fly').addEventListener('click', function() {
 
-    // Add a function that flies to a location: https://docs.mapbox.com/mapbox-gl-js/api/#map#flyto
     map.flyTo({
-      center: [-76.6122, 39.2904],
-      zoom: 9,
-      speed: 1,
-      curve: 1,
-      easing(t) {
-        return t;
-      }
+      center: [0,0],
+      essential: true // this animation is considered essential with respect to prefers-reduced-motion
     });
+    });
+
     // Add a function that sets pitch (tilt) to 60 and bearing (rotation) to 45: https://docs.mapbox.com/mapbox-gl-js/api/#map#setpitch and https://docs.mapbox.com/mapbox-gl-js/api/#map#setbearing
-    map.setpitch(60)
-    map.setbearing(45)
-
-
+    //tilt map to 60 degrees
+    map.setPitch(60)
+    // rotate the map to 45 degrees
+    map.setBearing(45);
     // Add a search box: https://docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-geocoder/
     map.addControl(
-      new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl
-      })
+    new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl
+    })
     );
 
     // Add a geolocation button: https://docs.mapbox.com/mapbox-gl-js/api/#geolocatecontrol
     map.addControl(new mapboxgl.GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true
-      },
-      trackUserLocation: true
+        positionOptions: {
+            enableHighAccuracy: true
+        },
+        trackUserLocation: true
     }));
     </script>
 
