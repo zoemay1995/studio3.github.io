@@ -60,13 +60,13 @@ type="text/css"
     var map = new mapboxgl.Map({
       container: 'map', // container id
       style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
-      center: [-98.4842, 39.0119], // starting position [lng, lat]
+      center: [-76.6122, 39.2904], // starting position [lng, lat]
       zoom: 6 // starting zoom
     });
 
     // Add a popup
     var popup = new mapboxgl.Popup({ closeOnClick: false })
-      .setLngLat([-96, 37.8])
+      .setLngLat([-76.6122, 39.2904])
       .setHTML('<h1>Abolish ICE!</h1>')
       .addTo(map);
     // Add pan and zoom controls on the left
@@ -77,7 +77,7 @@ type="text/css"
     document.getElementById('fly').addEventListener('click', function() {
 
     map.flyTo({
-      center: [0,0],
+      center: [-76.6122, 39.2904],
       essential: true // this animation is considered essential with respect to prefers-reduced-motion
     });
     });
@@ -89,10 +89,10 @@ type="text/css"
     map.setBearing(45);
     // Add a search box: https://docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-geocoder/
     map.addControl(
-    new MapboxGeocoder({
-    accessToken: mapboxgl.accessToken,
-    mapboxgl: mapboxgl
-    })
+      new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl
+      })
     );
 
     // Add a geolocation button: https://docs.mapbox.com/mapbox-gl-js/api/#geolocatecontrol
