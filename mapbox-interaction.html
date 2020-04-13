@@ -47,7 +47,7 @@
     rel="stylesheet"
     href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css"
     type="text/css"
-  />
+    />
   <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
   <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
@@ -75,10 +75,12 @@
 
     //Add a function that flies to a location: https://docs.mapbox.com/mapbox-gl-js/api/#map#flyto
     document.getElementById('fly').addEventListener('click', function() {
+
     map.flyTo({
       center: [-76.6122, 39.2904],
       essential: true // this animation is considered essential with respect to prefers-reduced-motion
     });
+    })
 
     // Add a function that sets pitch (tilt) to 60 and bearing (rotation) to 45: https://docs.mapbox.com/mapbox-gl-js/api/#map#setpitch and https://docs.mapbox.com/mapbox-gl-js/api/#map#setbearing
     //tilt map to 60 degrees
